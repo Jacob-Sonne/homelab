@@ -1,0 +1,35 @@
+name: Branch Naming Convention
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+    types: 
+      - opened
+      - reopened
+      - synchronize
+      - edited
+
+permissions:
+  contents: read
+
+jobs:
+  validate-branch-name:
+    name: Validate Branch Name
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Validate branch name
+        env:
+          BRANCH_NAME: ${{ github.head_ref }}
+        run: |
+          if [[ "$BRANCH_NAME" =~ ^(feat|fix|hotfix|ci|doc|refactor)/[a-z0-9]+(_[a-z0-9]+)*$ ]]; then
+            echo "Branch name is valid: $BRANCH_NAME"
+          else
+            echo "::error::Invalid branch name: $BRANCH_NAME"
+            echo "Allowed prefixes: feat/, fix/, hotfix/, ci/, doc/, refactor/"
+            echo "Use lowercase letters, numbers, and underscores."
+            exit 1
+          fi
+    
