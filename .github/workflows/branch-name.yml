@@ -24,12 +24,12 @@ jobs:
         env:
           BRANCH_NAME: ${{ github.head_ref }}
         run: |
-          if [[ "$BRANCH_NAME" =~ ^(feat|fix|hotfix|ci|doc|refactor)/[a-z0-9]+(_[a-z0-9]+)*$]]; then
+          if [[ "$BRANCH_NAME" =~ ^(feat|fix|hotfix|ci|doc|refactor)/[a-z0-9]+(_[a-z0-9]+)*$ ]]; then
             echo "Branch name is valid: $BRANCH_NAME"
           else
             echo "::error::Invalid branch name: $BRANCH_NAME"
             echo "Allowed prefixes: feat/, fix/, hotfix/, ci/, doc/, refactor/"
-            echo "Use lowercase letters, numbers, and underscores".
+            echo "Use lowercase letters, numbers, and underscores."
             exit 1
           fi
     
