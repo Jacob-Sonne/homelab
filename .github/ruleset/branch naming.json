@@ -1,0 +1,29 @@
+{
+  "id": 25308623,
+  "name": "branch naming",
+  "target": "branch",
+  "source_type": "Repository",
+  "source": "Jacob-Sonne/homelab",
+  "enforcement": "active",
+  "conditions": {
+    "ref_name": {
+      "exclude": [
+        "refs/heads/fix/*",
+        "refs/heads/ci/*",
+        "refs/heads/doc/*",
+        "refs/heads/feat/*",
+        "refs/heads/refactor/*",
+        "refs/heads/hotfix/*"
+      ],
+      "include": [
+        "~ALL"
+      ]
+    }
+  },
+  "rules": [
+    {
+      "type": "creation"
+    }
+  ],
+  "bypass_actors": []
+}
